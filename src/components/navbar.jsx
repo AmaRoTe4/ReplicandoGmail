@@ -5,33 +5,42 @@ import Chat from "../svg/chat.svg";
 import Spaces from "../svg/personas.svg";
 import Meet from "../svg/camera.svg";
 
-export default function NavBar({ setHovers, children }) {
-  const handleHover = () => {
-    setHovers([true]);
+export default function NavBar({ setHoversChat, setHoversSpaces, children }) {
+  const handleHoverChat = () => {
+    setHoversChat(true);
+    setHoversSpaces(false);
+  };
+
+  const handleHoverSpaces = () => {
+    setHoversSpaces(true);
+    setHoversChat(false);
   };
 
   return (
     <div style={{ backgroundColor: "#eaf1fb" }} className="w-16">
       <nav className="w-full h-full">
-        <div className="flex justify-center align-center">
-          <Menu className="my-5" />
+        <div className="flex justify-center align-cente">
+          <Menu className="my-5 z-20 h-[20px] z-100" />
+          <div className="h-[30px] w-[30px] z-10 mt-4 absolute bg-transparent hover:scale-150 hover:bg-slate-300 rounded-full"></div>
         </div>
         <div>
           <Elementos notificaciones="100" name="Mail">
             <Gmail className="h-5 p-5px mt-2" />
           </Elementos>
 
-          <Elementos 
-              notificaciones="" 
-              name="Chat" 
-              onMouseEnter={handleHover}
+          <Elementos
+            notificaciones=""
+            name="Chat"
+            onMouseEnter={handleHoverChat}
           >
-            <Chat
-              className="h-5 p-5px mt-2"
-            />
+            <Chat className="h-5 p-5px mt-2" />
           </Elementos>
 
-          <Elementos notificaciones="" name="Spaces">
+          <Elementos
+            notificaciones=""
+            name="Spaces"
+            onMouseEnter={handleHoverSpaces}
+          >
             <Spaces className="h-5 p-5px mt-2" />
           </Elementos>
 
@@ -44,9 +53,9 @@ export default function NavBar({ setHovers, children }) {
   );
 }
 
-export const Elementos = ({ name, notificaciones, children , ...props}) => {
+export const Elementos = ({ name, notificaciones, children, ...props }) => {
   return (
-    <div 
+    <div
       className="relative flex-1 justify-center align-center my-5 px-5"
       {...props}
     >
