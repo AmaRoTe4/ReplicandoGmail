@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Lapiz from "../svg/lapiz.svg";
 import Mas from "../svg/mas.svg";
@@ -18,8 +18,8 @@ import Gestion from "../svg/gestion.svg"
 
 export default function Actions() {
   return (
-    <div className="flex w-1/4 border-e-2">
-      <section className="flex flex-col  w-full h-auto">
+    <div className="flex w-1/4">
+      <section className="flex flex-col w-[95%] h-auto">
         <div className="my-2 ms-5">
           <img
             src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"

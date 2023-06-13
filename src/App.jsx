@@ -19,7 +19,7 @@ function App() {
       />
       <div className="flex w-screen">
         <Actions />
-        <div className="flex w-full">
+        <div className="flex flex-col w-full">
           <Search />
           <Main />
         </div>
