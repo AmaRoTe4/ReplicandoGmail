@@ -1,5 +1,4 @@
-import React from "react"
-import { useState }  from "react"
+import { useState , useEffect }  from "react"
 import NavBar from "./components/navbar"
 import Actions from "./components/actions"
 import Search from "./components/search"
@@ -10,6 +9,32 @@ import Mas from "./svg/mas.svg"
 function App() {
   const [hoversChat , setHoversChat] = useState(false)
   const [hoversSpaces , setHoversSpaces] = useState(false)
+  const [vistaEstado , setVistaEstado] = useState(false);
+  const [vistaSearch  , setVistaSearch] = useState(false);
+  const [vistaSearchSetting  , setVistaSearchSetting] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    e.preventDefault();
+
+    console.log(e)
+
+    if(!e.target.form){
+      setVistaSearchSetting(false);    
+    }
+
+    setHoversChat(false);    
+    setHoversSpaces(false);    
+    setVistaEstado(false);    
+    setVistaSearch(false);    
+  };
 
   return (
     <div style={{backgroundColor: "#f6f8fc"}} className="flex min-w-100vw h-screen">
@@ -20,7 +45,14 @@ function App() {
       <div className="flex w-screen">
         <Actions />
         <div className="flex flex-col w-full">
-          <Search />
+          <Search 
+            vistaEstado={vistaEstado} 
+            setVistaEstado={setVistaEstado}
+            vistaSearch={vistaSearch}
+            setVistaSearch={setVistaSearch}
+            vistaSearchSetting={vistaSearchSetting}
+            setVistaSearchSetting={setVistaSearchSetting}
+          />
           <Main />
         </div>
       </div>
